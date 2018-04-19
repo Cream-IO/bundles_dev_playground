@@ -1,0 +1,9 @@
+_creamio_userbundle:
+    resource: '@CreamIOUserBundle/Resources/config/routing.xml'
+    prefix: /admin/api
+
+cream_io_user.logout:
+    path: /admin/api/logout/
+
+secured_test_route:
+    path: /securedTestRoute

@@ -1,0 +1,33 @@
+# config/packages/security.yaml
+security:
+    providers:
+        db_provider:
+            entity:
+                class: CreamIO\UserBundle\Entity\BUser
+                property: username
+
+    role_hierarchy:
+        ROLE_ADMIN:     IS_AWAITING_VALIDATION
+        ROLE_SUPER_ADMIN: ROLE_ADMIN
+
+    access_control:
+        - { path: /admin/api/login, roles: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/, roles: ROLE_ADMIN }
+
+    firewalls:
+        dev:
+            pattern: ^/(_(profiler|wdt)|css|images|js)/
+            security: false
+
+        main:
+            anonymous: ~
+            pattern: ^/
+            json_login:
+                check_path: cream_io_user.login
+            logout:
+                path:   /logout
+
+    encoders:
+        CreamIO\UserBundle\Entity\BUser:
+            algorithm: bcrypt
+            cost: 15
