@@ -2,7 +2,10 @@
 
 namespace App\Controller;
 
-use App\Service\UploaderService;
+use App\Entity\Avatar;
+use CreamIO\UploadBundle\Service\UploaderService;
+use CreamIO\UserBundle\Entity\BUser;
+use CreamIO\BaseBundle\Service\APIService;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -18,14 +21,18 @@ class UploadedFileController extends Controller
     /**
      * @Route("", methods="POST")
      */
-    public function upload(Request $request, UploaderService $uploader): Response
+    public function upload(Request $request, UploaderService $uploader, APIService $apiService): Response
     {
-        $uploadedFile = $uploader->handleFileUpload($request);
+        /** @var Avatar $uploadedFile */
+        $uploadedFile = $uploader->handleUpload($request, false);
         $em = $this->getDoctrine()->getManager();
+        $user = $em->getRepository(BUser::class)->find('d21406db-1213-494a-a69b-bc9b3a4674d6');
+        $uploadedFile->setUser($user);
+        $uploader->validateEntity($uploadedFile);
         $em->persist($uploadedFile);
         $em->flush();
 
-        return new Response($uploadedFile->getFile());
+        return $apiService->successWithoutResults($uploadedFile->getId(), Response::HTTP_OK, $request);
     }
 
     /**

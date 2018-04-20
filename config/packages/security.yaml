@@ -13,6 +13,7 @@ security:
     access_control:
         - { path: /admin/api/login, roles: IS_AUTHENTICATED_ANONYMOUSLY }
         - { path: ^/admin/api, roles: ROLE_ADMIN }
+        - { path: /securedTestRoute, roles: ROLE_ADMIN }
 
     firewalls:
         dev:

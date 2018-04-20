@@ -3,6 +3,8 @@
 parameters:
     locale: 'en'
     upload_directory: '%kernel.project_dir%/public/uploads'
+    default_upload_file_class: 'App\Entity\Avatar'
+    default_upload_file_field: 'file'
 
 services:
     # default configuration for services in *this* file
@@ -24,9 +26,3 @@ services:
     App\Controller\:
         resource: '../src/Controller'
         tags: ['controller.service_arguments']
-
-    # add more service definitions when explicit configuration is needed
-    # please note that last definitions always *replace* previous ones
-    App\Service\UploaderService:
-        arguments:
-            $targetDirectory: '%upload_directory%'

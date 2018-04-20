@@ -4,7 +4,8 @@
     "require": {
         "php": "^7.1.3",
         "ext-iconv": "*",
-        "qraimbault/symfony_creamio_userbundle": "^0.2",
+        "qraimbault/creamio_symfony_uploadbundle": "^0.1",
+        "qraimbault/creamio_symfony_userbundle": "^0.2",
         "symfony/console": "^4.0",
         "symfony/flex": "^1.0",
         "symfony/framework-bundle": "^4.0",
