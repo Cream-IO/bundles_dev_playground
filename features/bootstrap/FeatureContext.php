@@ -1,8 +1,8 @@
 <?php
 
-use CreamIO\UserBundle\Entity\BUser;
 use Behat\MinkExtension\Context\RawMinkContext;
 use Behat\Symfony2Extension\Context\KernelDictionary;
+use CreamIO\UserBundle\Entity\BUser;
 use Symfony\Component\HttpKernel\KernelInterface;
 
 class FeatureContext extends RawMinkContext
