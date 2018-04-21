@@ -5,6 +5,7 @@ build/
 composer.lock
 symfony.lock
 behat.yml
+public/uploads
 
 ###> symfony/framework-bundle ###
 .env
